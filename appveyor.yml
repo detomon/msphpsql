@@ -20,7 +20,7 @@ environment:
         TEST_PHP_SQL_SERVER: (local)\SQL2019
         SQL_INSTANCE: SQL2019
         PHP_VC: vs16
-        PHP_MAJOR_VER: 8.1
+        PHP_MAJOR_VER: 8.2
         PHP_MINOR_VER: latest
         PHP_EXE_PATH: Release
         THREAD: nts
@@ -30,7 +30,7 @@ environment:
         TEST_PHP_SQL_SERVER: (local)\SQL2019
         SQL_INSTANCE: SQL2019
         PHP_VC: vs16
-        PHP_MAJOR_VER: 8.2
+        PHP_MAJOR_VER: 8.1
         PHP_MINOR_VER: latest
         PHP_EXE_PATH: Release
         THREAD: nts
@@ -101,7 +101,7 @@ build_script:
     - copy %APPVEYOR_BUILD_FOLDER%\buildscripts\*.py c:\projects
     - cd c:\projects
     - python -V
-    - python builddrivers.py --PHPVER=%PHP_VERSION% --ARCH=%BUILD_PLATFORM% --THREAD=%THREAD% --SOURCE=%APPVEYOR_BUILD_FOLDER%\source --TESTING --NO_RENAME
+    - python builddrivers.py --PHPVER=%PHP_VERSION% --ARCH=%BUILD_PLATFORM% --THREAD=%THREAD% --SOURCE=%APPVEYOR_BUILD_FOLDER%\source --NO_RENAME
     - cd c:\projects\php-sdk\phpdev\%PHP_VC%\%BUILD_PLATFORM%\php-%PHP_VERSION%-src\
     - set PHP_SRC_DIR=%CD%\ext
     - cd %PHP_EXE_PATH%
