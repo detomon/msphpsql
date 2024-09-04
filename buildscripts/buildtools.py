@@ -432,6 +432,7 @@ class BuildUtil(object):
         starter_script = 'phpsdk-' + vc + '-' + self.arch + '.bat'
         print('Running starter script: ', starter_script)
         os.system(starter_script + ' -t ' + batch_file)
+        print('Starter script complete')
         
         # Now we can safely remove the Source folder, because its contents have 
         # already been modified prior to building the extensions
