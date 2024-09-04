@@ -152,6 +152,8 @@ class BuildDriver(object):
         # ext_dir is the directory where we can find the built extension(s)
         ext_dir = self.util.build_drivers(self.make_clean, dest, logfile)
 
+        print('Build completed')
+        
         # Copy the binaries if a destination path is defined
         if self.dest_path is not None:
             dest_drivers = os.path.join(self.dest_path, self.util.major_version(), self.util.arch)
