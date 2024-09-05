@@ -474,15 +474,22 @@ class BuildUtil(object):
                 
     def copy_binary(self, from_dir, dest_dir, driver, suffix):
         """Copy sqlsrv or pdo_sqlsrv binary (based on *suffix*) to *dest_dir*."""
+        print('')
         if not self.no_rename and suffix == '.dll':
             binary = self.driver_new_name(driver, suffix)
         else:
             binary = self.driver_name(driver, suffix)
+
+        print('copy2...')
         shutil.copy2(os.path.join(from_dir, binary), dest_dir)
+        print('Done')
+        
         if suffix == '.dll':
             php_ini_file = os.path.join(from_dir, 'php.ini')
             with open(php_ini_file, 'a') as php_ini:
+                print('open...')
                 php_ini.write('extension=' + binary + '\n');
+                print('Done')
     
     def copy_binaries(self, sdk_dir, copy_to_ext):
         """Copy the sqlsrv and/or pdo_sqlsrv binaries, including the pdb files, 
@@ -521,11 +528,8 @@ class BuildUtil(object):
         if self.driver == 'all':
             print('Copy ALL')
             self.copy_binary(build_dir, dest_dir, 'sqlsrv', '.dll')
-            print('1')
             self.copy_binary(build_dir, dest_dir, 'sqlsrv', '.pdb')
-            print('2')
             self.copy_binary(build_dir, dest_dir, 'pdo_sqlsrv', '.dll')
-            print('3')
             self.copy_binary(build_dir, dest_dir, 'pdo_sqlsrv', '.pdb')
             print('Copy ALL complete')
         else:
