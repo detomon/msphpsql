@@ -437,13 +437,16 @@ class BuildUtil(object):
         # Now we can safely remove the Source folder, because its contents have 
         # already been modified prior to building the extensions
         shutil.rmtree(os.path.join(phpSDK, 'Source'), ignore_errors=True) 
+        print('rmtree complete')
         
         # Next, rename the newly compiled PHP extensions, if required
         if not self.no_rename:
             self.rename_binaries(sdk_dir)
+            print('rename_binaries complete')
         
         # Final step, copy the binaries to the right place
         ext_dir = self.copy_binaries(sdk_dir, copy_to_ext)
+        print('copy_binaries complete')
         
         return ext_dir
 
