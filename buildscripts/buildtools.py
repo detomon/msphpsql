@@ -513,17 +513,23 @@ class BuildUtil(object):
         
         print('Destination:', dest_dir)
         with open(php_ini_file, 'a') as php_ini:
+            print('Write:', php_ini_file)
             php_ini.write(ext_dir_line + '\n')
+            print('Write complete')
 
         # Now copy the binaries
         if self.driver == 'all':
+            print('Copy ALL')
             self.copy_binary(build_dir, dest_dir, 'sqlsrv', '.dll')
             self.copy_binary(build_dir, dest_dir, 'sqlsrv', '.pdb')
             self.copy_binary(build_dir, dest_dir, 'pdo_sqlsrv', '.dll')
             self.copy_binary(build_dir, dest_dir, 'pdo_sqlsrv', '.pdb')
+            print('Copy ALL complete')
         else:
+            print('Copy DRIVER')
             self.copy_binary(build_dir, dest_dir, self.driver, '.dll')
             self.copy_binary(build_dir, dest_dir, self.driver, '.pdb')
+            print('Copy DRIVER complete')
             
         return dest_dir
               
