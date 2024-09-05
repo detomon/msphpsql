@@ -521,8 +521,11 @@ class BuildUtil(object):
         if self.driver == 'all':
             print('Copy ALL')
             self.copy_binary(build_dir, dest_dir, 'sqlsrv', '.dll')
+            print('1')
             self.copy_binary(build_dir, dest_dir, 'sqlsrv', '.pdb')
+            print('2')
             self.copy_binary(build_dir, dest_dir, 'pdo_sqlsrv', '.dll')
+            print('3')
             self.copy_binary(build_dir, dest_dir, 'pdo_sqlsrv', '.pdb')
             print('Copy ALL complete')
         else:
