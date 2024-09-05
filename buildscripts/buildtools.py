@@ -480,7 +480,7 @@ class BuildUtil(object):
         else:
             binary = self.driver_name(driver, suffix)
 
-        print('copy2...')
+        print('copy2 [', from_dir, '][', binary, '] -> [', dest_dir ,']...')
         shutil.copy2(os.path.join(from_dir, binary), dest_dir)
         print('Done')
         
