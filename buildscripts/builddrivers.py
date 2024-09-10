@@ -206,6 +206,8 @@ class BuildDriver(object):
                     with open(logfile_path, 'r') as f:
                         f.seek(0)
                         print(f.read())
+                else
+                    print('Can't open logfile')
                         
                 os.chdir(work_dir)
                 exit(1)
