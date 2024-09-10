@@ -527,6 +527,11 @@ class BuildUtil(object):
         # Now copy the binaries
         if self.driver == 'all':
             print('Copy ALL')
+            dir_list = os.listdir(build_dir)
+            print("Files and directories in '", build_dir, "' :")
+            # prints all files
+            print(dir_list)
+            
             self.copy_binary(build_dir, dest_dir, 'sqlsrv', '.dll')
             self.copy_binary(build_dir, dest_dir, 'sqlsrv', '.pdb')
             self.copy_binary(build_dir, dest_dir, 'pdo_sqlsrv', '.dll')
