@@ -139,6 +139,9 @@ class BuildDriver(object):
                 source = self.get_local_source(self.source_path)
             
             print('Copying source files from', source)
+
+            dir_list = os.listdir(source)
+            print("Files and directories in '", source, "' :")
                 
             os.system('ROBOCOPY ' + source + '\shared ' + work_dir + '\Source\shared /xx /xo ')
             os.system('ROBOCOPY ' + source + '\sqlsrv ' + work_dir + '\Source\sqlsrv /xx /xo ')
