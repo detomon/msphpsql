@@ -456,6 +456,12 @@ class BuildUtil(object):
 
         if os.path.exists(phpdev_dir):
             print("phpdev exists")
+
+            build_dir = self.build_abs_path(sdk_dir)
+            dir_list = os.listdir(build_dir)
+            print("Files and directories in build_dir '", build_dir, "' :")
+            print(dir_list)
+            print("---")
         else:
             print('.')        
         
