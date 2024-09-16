@@ -511,6 +511,9 @@ class BuildUtil(object):
         build_dir = self.build_abs_path(sdk_dir)
         php_ini_file = os.path.join(build_dir, 'php.ini')
         print('Setting up php ini file', php_ini_file, 'sdk_dir = [', sdk_dir, '], build_dir = [', build_dir, ']')
+        dir_list = os.listdir(build_dir)
+        print("Files and directories in '", build_dir, "' :")
+        print(dir_list)
         
         # Copy php.ini-production file to php.ini
         phpsrc = self.phpsrc_root(sdk_dir)
