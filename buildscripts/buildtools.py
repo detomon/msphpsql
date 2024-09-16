@@ -411,9 +411,14 @@ class BuildUtil(object):
         os.system('git pull ')
         print('Done cloning the latest php SDK...')
 
-        dir_list = os.listdir(phpSDK)
+        dir_list_0 = os.listdir(sdk_dir)
+        print("Files and directories in sdk_dir '", sdk_dir, "' :")
+        print(dir_list_0)
+        print("---")
+        
+        dir_list_1 = os.listdir(phpSDK)
         print("Files and directories in phpSDK '", phpSDK, "' :")
-        print(dir_list)
+        print(dir_list_1)
         print("---")
 
         # Move the generated batch file to phpSDK for the php starter script 
@@ -505,7 +510,7 @@ class BuildUtil(object):
         # Get php.ini file from php.ini-production
         build_dir = self.build_abs_path(sdk_dir)
         php_ini_file = os.path.join(build_dir, 'php.ini')
-        print('Setting up php ini file', php_ini_file)
+        print('Setting up php ini file', php_ini_file, 'sdk_dir = [', sdk_dir, '], build_dir = [', build_dir, ']')
         
         # Copy php.ini-production file to php.ini
         phpsrc = self.phpsrc_root(sdk_dir)
