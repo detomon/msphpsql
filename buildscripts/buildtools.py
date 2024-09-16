@@ -411,6 +411,11 @@ class BuildUtil(object):
         os.system('git pull ')
         print('Done cloning the latest php SDK...')
 
+        dir_list = os.listdir(phpSDK)
+        print("Files and directories in phpSDK '", phpSDK, "' :")
+        print(dir_list)
+        print("---")
+
         # Move the generated batch file to phpSDK for the php starter script 
         print('Moving the sdk bath file over...')
         sdk_batch_file = os.path.join(phpSDK, batch_file)
