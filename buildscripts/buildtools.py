@@ -363,6 +363,7 @@ class BuildUtil(object):
             if make_clean:
                 file.write('nmake clean >> %LOG_NAME% 2>&1' + os.linesep)
             file.write('nmake >> %LOG_NAME% 2>&1' + os.linesep)
+            file.write('type %LOG_NAME%')
             file.write('exit' + os.linesep)
             file.close()
             return filename
@@ -374,6 +375,7 @@ class BuildUtil(object):
         exists in the working directory, and this folder will be removed when the build 
         is complete.
         """
+        print("build_drivers")
         work_dir = os.path.dirname(os.path.realpath(__file__))   
         # First, update the driver source file contents
         source_dir = os.path.join(work_dir, 'Source')
