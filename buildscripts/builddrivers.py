@@ -205,6 +205,12 @@ class BuildDriver(object):
                 print('Something went wrong, launching log file', logfile)
 
                 logfile_path = os.path.join(root_dir, 'php-sdk', logfile)
+                
+                dir_list = os.listdir(root_dir)
+                print("Files and directories in root_dir '", root_dir, "' :")
+                print(dir_list)
+                print("---")
+                
                 if os.path.isfile(logfile_path):
                     with open(logfile_path, 'r') as f:
                         f.seek(0)
