@@ -366,6 +366,17 @@ class BuildUtil(object):
             file.write('type %LOG_NAME%')
             file.write('exit' + os.linesep)
             file.close()
+
+            cur_dir = os.getcwd();
+            print("---")
+            dir_list = os.listdir(cur_dir)
+            print("Files and directories in cur_dir '", cur_dir, "' :")
+            print(dir_list)
+            print("---")
+            print(filename)
+            print("---")
+            
+            
             return filename
         except:
             print('Cannot create ', filename)
