@@ -394,6 +394,9 @@ class BuildUtil(object):
             log_file = self.get_logfile_name()
         
         batch_file = self.create_local_batch_file(make_clean, cmd_line, log_file)
+
+        print("log_file = ", log_file)
+        print("batch_file = ", batch_file)
         
         # Reference: https://github.com/php/php-sdk-binary-tools
         # Clone the master branch of PHP sdk if the directory does not exist 
