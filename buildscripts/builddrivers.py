@@ -204,7 +204,7 @@ class BuildDriver(object):
             except:
                 print('Something went wrong, launching log file', logfile)
 
-                logfile_path = os.path.join(root_dir, 'php-sdk', logfile)
+                logfile_path = os.path.join(os.getcwd(), 'php-sdk', logfile)
 
                 print("---")
                 print("logfile_path = ", logfile_path)
