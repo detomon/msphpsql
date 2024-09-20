@@ -363,20 +363,9 @@ class BuildUtil(object):
             if make_clean:
                 file.write('nmake clean >> %LOG_NAME% 2>&1' + os.linesep)
             file.write('nmake >> %LOG_NAME% 2>&1' + os.linesep)
-            file.write('type %LOG_NAME%')
             file.write('exit' + os.linesep)
             file.close()
 
-            cur_dir = os.getcwd();
-            print("---")
-            dir_list = os.listdir(cur_dir)
-            print("Files and directories in cur_dir '", cur_dir, "' :")
-            print(dir_list)
-            print("---")
-            print(filename)
-            print("---")
-            
-            
             return filename
         except:
             print('Cannot create ', filename)
@@ -405,9 +394,6 @@ class BuildUtil(object):
             log_file = self.get_logfile_name()
         
         batch_file = self.create_local_batch_file(make_clean, cmd_line, log_file)
-
-        print("log_file = ", log_file)
-        print("batch_file = ", batch_file)
         
         # Reference: https://github.com/php/php-sdk-binary-tools
         # Clone the master branch of PHP sdk if the directory does not exist 
@@ -427,21 +413,6 @@ class BuildUtil(object):
         os.system('git pull ')
         print('Done cloning the latest php SDK...')
 
-        dir_list_0 = os.listdir(sdk_dir)
-        print("Files and directories in sdk_dir '", sdk_dir, "' :")
-        print(dir_list_0)
-        print("---")
-        
-        dir_list_1 = os.listdir(phpSDK)
-        print("Files and directories in phpSDK '", phpSDK, "' :")
-        print(dir_list_1)
-        print("---")
-
-        phpdev_dir = os.path.join(phpSDK, 'phpdev')
-        if os.path.exists(phpdev_dir):
-            print("phpdev exists")
-        else:
-            print('.')
         # Move the generated batch file to phpSDK for the php starter script 
         print('Moving the sdk bath file over...')
         sdk_batch_file = os.path.join(phpSDK, batch_file)
@@ -457,11 +428,6 @@ class BuildUtil(object):
             os.chmod(sdk_source, stat.S_IWRITE)
             shutil.rmtree(sdk_source, ignore_errors=True) 
         shutil.move(source_dir, phpSDK)
-
-        if os.path.exists(phpdev_dir):
-            print("phpdev exists")
-        else:
-            print('.')
         
         # Invoke phpsdk-<vc>-<arch>.bat
         vc = self.compiler_version(sdk_dir)
@@ -470,22 +436,7 @@ class BuildUtil(object):
         os.system(starter_script + ' -t ' + batch_file)
         print('Starter script complete')
 
-        if os.path.exists(phpdev_dir):
-            print("phpdev exists")
-            
-            dir_list = os.listdir(sdk_dir)
-            print("Files and directories in sdk_dir '", sdk_dir, "' :")
-            print(dir_list)
-            print("---")
-            
-            build_dir = self.build_abs_path(sdk_dir)
-            dir_list = os.listdir(build_dir)
-            print("Files and directories in build_dir '", build_dir, "' :")
-            print(dir_list)
-            print("---")
-        else:
-            print('.')        
-        
+
         # Now we can safely remove the Source folder, because its contents have 
         # already been modified prior to building the extensions
         shutil.rmtree(os.path.join(phpSDK, 'Source'), ignore_errors=True) 
@@ -496,11 +447,6 @@ class BuildUtil(object):
             self.rename_binaries(sdk_dir)
             print('rename_binaries complete')
 
-        if os.path.exists(phpdev_dir):
-            print("phpdev exists")
-        else:
-            print('.')
-        
         # Final step, copy the binaries to the right place
         ext_dir = self.copy_binaries(sdk_dir, copy_to_ext)
         print('copy_binaries complete')
